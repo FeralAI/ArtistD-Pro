@@ -351,8 +351,10 @@
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
 //#define HOTEND_OFFSET_X { 0.0, 373.2 } // (mm) relative X-offset for each nozzle
-#define HOTEND_OFFSET_Y { 0.0, -0.02 }  // (mm) relative Y-offset for each nozzle
-#define HOTEND_OFFSET_Z { 0.0, 0.1 }  // (mm) relative Z-offset for each nozzle
+// #define HOTEND_OFFSET_Y { 0.0, -0.02 }  // (mm) relative Y-offset for each nozzle
+// #define HOTEND_OFFSET_Z { 0.0, 0.1 }  // (mm) relative Z-offset for each nozzle
+#define HOTEND_OFFSET_Y { 0.0, -0.2 }  // (mm) relative Y-offset for each nozzle
+#define HOTEND_OFFSET_Z { 0.0, 0.3 }  // (mm) relative Z-offset for each nozzle
 
 // @section machine
 
@@ -492,7 +494,7 @@
  *
  */
 #define TEMP_SENSOR_0 1
-#define TEMP_SENSOR_1 1  //TwinkieXLII 热敏电阻  
+#define TEMP_SENSOR_1 1  //TwinkieXLII 热敏电阻
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
@@ -866,10 +868,10 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2209
-#define Y_DRIVER_TYPE  TMC2209
-#define Z_DRIVER_TYPE  TMC2209
-#define X2_DRIVER_TYPE TMC2209
+#define X_DRIVER_TYPE  TMC2209_STANDALONE
+#define Y_DRIVER_TYPE  TMC2209_STANDALONE
+#define Z_DRIVER_TYPE  TMC2209_STANDALONE
+#define X2_DRIVER_TYPE TMC2209_STANDALONE
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
@@ -877,9 +879,9 @@
 //#define I_DRIVER_TYPE  A4988
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2209
-#define E1_DRIVER_TYPE TMC2209
-//#define E2_DRIVER_TYPE TMC2209 //TwinkieXXLII Because Robin_PRO defines X2 as E2
+#define E0_DRIVER_TYPE TMC2209_STANDALONE
+#define E1_DRIVER_TYPE TMC2209_STANDALONE
+//#define E2_DRIVER_TYPE TMC2209_STANDALONE //TwinkieXXLII Because Robin_PRO defines X2 as E2
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
 //#define E5_DRIVER_TYPE A4988
@@ -932,7 +934,8 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 97.35, 97.35 }
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 97.35, 97.35 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 932, 932 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1195,7 +1198,8 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 24.7, -39.2, 0 }
+// #define NOZZLE_TO_PROBE_OFFSET { 24.7, -39.2, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { -42, -28, -1.8 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1628,7 +1632,8 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  // #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1701,7 +1706,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LEVEL_BED_CORNERS  //TwinkieXLII 
+#define LEVEL_BED_CORNERS  //TwinkieXLII
 
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET_LFRB { 40, 40, 40, 40 } // (mm) Left, Front, Right, Back insets  //TwinkieXLII
